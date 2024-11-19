@@ -1,7 +1,17 @@
-from django.views.generic import ListView
-from .models import Review
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
-class HomeView(ListView):
+class ReviewCreateView(CreateView):
     model = Review
-    template_name = 'blog/home.html'
-    context_object_name = 'reviews'
+    fields = ['title', 'content', 'genre', 'image']
+    template_name = 'blog/form.html'
+
+class ReviewUpdateView(UpdateView):
+    model = Review
+    fields = ['title', 'content', 'genre', 'image']
+    template_name = 'blog/form.html'
+
+class ReviewDeleteView(DeleteView):
+    model = Review
+    success_url = reverse_lazy('home')
+    template_name = 'blog/confirm_delete.html'
