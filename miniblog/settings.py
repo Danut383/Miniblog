@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 LOGIN_URL = '/login/'
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'miniblog.urls'
+
 
 TEMPLATES = [
     {
@@ -75,10 +77,12 @@ WSGI_APPLICATION = 'miniblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', #No jalo el MySql, asi que fue con sqlite
     }
 }
 
