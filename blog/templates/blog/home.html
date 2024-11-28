@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Inicio</h1>
+
+<div class="reviews-container">
+    {% for review in reviews %}
+    <div class="review-card">
+        <h2>{{ review.title }}</h2>
+        <p>{{ review.description }}</p>
+        <p><strong>Género:</strong> {{ review.genre }}</p>
+        
+        <!-- Estrellas para calificación -->
+        <div class="stars">
+            {% for i in range %}
+                {% if i <= review.rating %}
+                <span class="filled-star">★</span>
+                {% else %}
+                <span class="empty-star">☆</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+
+        <!-- Imagen asociada a la reseña -->
+        {% if review.image %}
+        <div class="image-container">
+            <img src="{{ review.image.url }}" alt="Imagen de {{ review.title }}" class="review-image">
+        </div>
+        {% endif %}
+        
+        <a href="{% url 'review-detail' review.id %}" class="btn btn-primary">Ver más</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

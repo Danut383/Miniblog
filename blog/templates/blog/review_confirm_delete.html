@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que quieres eliminar esta reseña?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'my-reviews' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

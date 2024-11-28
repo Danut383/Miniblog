@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Perfil de {{ user.username }}</h1>
+<div>
+    <p>Email: {{ user.email }}</p>
+    <p>Fecha de registro: {{ user.date_joined }}</p>
+</div>
+<a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+<a href="{% url 'my-reviews' %}" class="btn btn-primary">Mis reseñas</a>
+{% endblock %}
