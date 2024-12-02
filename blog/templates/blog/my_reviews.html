@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Mis Reseñas</h2>
+    <a href="{% url 'review-create' %}" class="btn btn-primary">Agregar Reseña</a>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <strong>{{ review.title }}</strong> - {{ review.description }}
+            <a href="{% url 'review-update' review.id %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'review-delete' review.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+{% for review in reviews %}
+<div class="review">
+    <h3>{{ review.title }}</h3>
+    <p>{{ review.description }}</p>
+    <p><strong>Género:</strong> {{ review.genre }}</p>
+    {% if review.image %}
+    <img src="{{ review.image.url }}" alt="Imagen de {{ review.title }}" class="review-image">
+    {% endif %}
+    <p>
+        <strong>Calificación:</strong>
+        {{ review.rating }} ★
+    </p>
+</div>
+{% endfor %}

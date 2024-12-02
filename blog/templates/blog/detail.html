@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ object.title }}</title>
+    <style>
+        /* CSS para el detalle de la reseña */
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.content }}</p>
+    <p><strong>Género:</strong> {{ object.genre }}</p>
+    <p><strong>Publicado el:</strong> {{ object.created_at }}</p>
+</body>
+</html>

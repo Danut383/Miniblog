@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>{{ review.title }}</h1>
+<p>{{ review.description }}</p>
+<p>Género: {{ review.genre }}</p>
+<div class="stars">
+    {% for star in "12345"|slice:":review.rating"|make_list %}
+        <span class="filled-star">★</span>
+    {% empty %}
+        <span class="empty-star">☆</span>
+    {% endfor %}
+</div>
+{% if review.image %}
+<div class="image-container">
+    <img src="{{ review.image.url }}" alt="Imagen de {{ review.title }}">
+</div>
+{% endif %}
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}

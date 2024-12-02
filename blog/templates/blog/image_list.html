@@ -1,0 +1,73 @@
+<body>
+    <h2>Lista de Imágenes</h2>
+    <div class="image-list">
+        {% for image in images %}
+            <div class="image-item">
+                <h3>{{ image.title }}</h3>
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                <form method="post" class="mt-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="image_id" value="{{ image.id }}">
+                    <label for="score">Calificar:</label>
+                    <select name="score">
+                        {% for i in "12345" %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .image-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+        }
+
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .image-item select {
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        .btn-submit {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</body>
+</html>

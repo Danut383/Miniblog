@@ -1,0 +1,105 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Inicio</h1>
+
+<div class="reviews-container">
+    {% for review in reviews %}
+    <div class="review-card">
+        <h2>{{ review.title }}</h2>
+        <p>{{ review.description }}</p>
+        <p><strong>Género:</strong> {{ review.genre }}</p>
+        
+        <!-- Estrellas para calificación -->
+        <div class="stars">
+            {% for i in "12345" %}
+                {% if i <= review.rating %}
+                <span class="filled-star">★</span>
+                {% else %}
+                <span class="empty-star">☆</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Imagen asociada a la reseña -->
+        {% if review.image %}
+        <div class="image-container">
+            <img src="{{ review.image.url }}" alt="Imagen de {{ review.title }}" class="review-image">
+        </div>
+        {% endif %}
+        
+        <a href="{% url 'review-detail' review.id %}" class="btn btn-primary">Ver más</a>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    /* Estilos para la vista de Home */
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+
+    .reviews-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-around;
+    }
+
+    .review-card {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .review-card h2 {
+        color: #007bff;
+    }
+
+    .stars {
+        margin-top: 10px;
+        color: #ccc;
+    }
+
+    .filled-star {
+        color: gold;
+    }
+
+    .empty-star {
+        color: #ddd;
+    }
+
+    .image-container {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .review-image {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Bienvenido, {{ user.username }}</p>
+    <ul>
+        <li><a href="{% url 'review-create' %}">Crear nueva reseña</a></li>
+        <li><a href="{% url 'profile' %}">Ver perfil</a></li>
+    </ul>
+
+    <style>
+        /* CSS específico para Dashboard */
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

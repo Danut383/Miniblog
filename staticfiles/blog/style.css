@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.dashboard {
+    background-color: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dashboard a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.dashboard a:hover {
+    background-color: #555;
+}
+
+.content {
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+/* Contenedor para reseñas */
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Espaciado entre reseñas */
+}
+
+.review-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.review-card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.review-card p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.review-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #007BFF;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.review-card a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.stars input {
+    display: none; /* Esconde los inputs */
+}
+
+.stars label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.stars input:checked ~ label {
+    color: gold;
+}
+
+.stars label:hover,
+.stars label:hover ~ label {
+    color: gold;
+}
+
+.review img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 500px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    object-fit: cover; /* Asegura que la imagen encaje sin deformarse */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

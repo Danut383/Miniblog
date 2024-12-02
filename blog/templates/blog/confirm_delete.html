@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eliminar Reseña</title>
+    <style>
+        /* CSS de Bootstrap directamente aquí */
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">¿Estás seguro de eliminar "{{ object.title }}"?</h1>
+        <form method="post" class="mt-4 text-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a href="{% url 'my-reviews' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
