@@ -12,21 +12,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
+# Es recomendable usar una clave secreta diferente en producción
 SECRET_KEY = 'django-insecure-zfvo3my98v%q9o&duzlko9wpwfxye*@@(vl4d#2)+y@u&@7kxj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False  # Asegúrate de que esté en False en producción
 
-ALLOWED_HOSTS = []
-
+# Configurar ALLOWED_HOSTS correctamente
+ALLOWED_HOSTS = ['miniblog3.onrender.com', '127.0.0.1']
 
 # Application definition
 
@@ -37,10 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    'blog',  # Tu aplicación personalizada
 ]
-LOGIN_URL = '/login/'
 
+LOGIN_URL = '/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,16 +53,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'miniblog.urls'
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'blog/templates'],  # Ruta completa a las plantillas
+        'DIRS': [BASE_DIR / 'blog' / 'templates'],  # Ruta completa a las plantillas
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # Necesario para django-allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -71,20 +69,14 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'miniblog.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
-
-import dj_database_url
-
 if os.getenv('DATABASE_URL'):
     DATABASES = {
-        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
     DATABASES = {
@@ -93,7 +85,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -113,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -125,29 +115,29 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'  # URL base para los archivos estáticos
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Directorio para los archivos estáticos en desarrollo
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directorio donde se recolectarán los archivos estáticos para producción
+
+# Directorios donde Django buscará archivos estáticos adicionales
+STATICFILES_DIRS = [
+    BASE_DIR / 'blog' / 'static',  # Asegúrate de que este directorio exista
+]
+
+# Directorio donde se recolectarán los archivos estáticos para producción
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (archivos subidos por los usuarios)
-MEDIA_URL = '/media/'  # URL base para los archivos de media
-MEDIA_ROOT = BASE_DIR / 'media'  # Directorio donde se almacenan los archivos subidos por los usuarios
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+# Redirección después del logout
 LOGOUT_REDIRECT_URL = '/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
 
-ALLOWED_HOSTS = ['miniblog3.onrender.com', '127.0.0.1']
+# Configuraciones adicionales para django-allauth (si las estás usando)
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default
+    'allauth.account.auth_backends.AuthenticationBackend',  # django-allauth
+)
+
